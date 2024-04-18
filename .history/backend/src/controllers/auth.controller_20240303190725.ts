@@ -29,9 +29,6 @@ export class AuthController {
       }
     );
   }
-  checkToken(req: any, res: Response): void {
-    res.status(200).send(req.user);
-  }
 
   async login(req: Request, res: Response): Promise<void> {
     try {

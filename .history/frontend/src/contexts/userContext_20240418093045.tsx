@@ -57,13 +57,8 @@ export const UserContextProvider = ({children} : {children: ReactNode} )=>{
   };
 
   useEffect(() => {
-  const authToken = localStorage.getItem("authtoken");
-  checkToken()
-  if (authToken) {
-    setIsAuthenticated(true);
-  }
-}, []);
-
+    checkToken();
+  }, [isAuthenticated]);
 
     return <UserContext.Provider value={{ isAuthenticated , onLogin , onRegister , onLogout}}>
         {children}

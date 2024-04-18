@@ -12,7 +12,9 @@ export const Home=()=>{
         <div className="h-screen w-full">
             <Header/>
             <InterfaceRecipe setIsOpenModal={setIsOpenModal}/>
-            {isModalOpen && <ModalRecipe setIsOpenModal={setIsOpenModal} />}
+            {
+                isModalOpen ? <ModalRecipe setIsOpenModal={setIsOpenModal} /> :"")
+            }
         </div>
     )
 }

@@ -57,9 +57,9 @@ export const UserContextProvider = ({children} : {children: ReactNode} )=>{
   };
 
   useEffect(() => {
-  const authToken = localStorage.getItem("authtoken");
-  checkToken()
-  if (authToken) {
+  const storedToken = localStorage.getItem("authtoken");
+  if (storedToken) {
+    // L'utilisateur est déjà authentifié, mettez à jour l'état d'authentification
     setIsAuthenticated(true);
   }
 }, []);

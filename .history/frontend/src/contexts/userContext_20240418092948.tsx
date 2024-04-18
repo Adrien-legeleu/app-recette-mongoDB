@@ -12,7 +12,7 @@ export const UserContext=createContext({
     isAuthenticated: false,
     onLogin: async (values:ISignInFormValues)=>{},
     onRegister: async (values:ISignInFormValues)=>{},
-    onLogout: ()=>{},
+    onLogout: async ()=>{},
 })
 
 export const UserContextProvider = ({children} : {children: ReactNode} )=>{
@@ -57,13 +57,8 @@ export const UserContextProvider = ({children} : {children: ReactNode} )=>{
   };
 
   useEffect(() => {
-  const authToken = localStorage.getItem("authtoken");
-  checkToken()
-  if (authToken) {
-    setIsAuthenticated(true);
-  }
-}, []);
-
+    checkToken();
+  }, [isAuthenticated]);
 
     return <UserContext.Provider value={{ isAuthenticated , onLogin , onRegister , onLogout}}>
         {children}

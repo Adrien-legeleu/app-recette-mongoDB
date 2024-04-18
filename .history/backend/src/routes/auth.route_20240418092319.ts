@@ -5,8 +5,9 @@ import { isConnectedMiddleware } from "../midlewares";
 const authRouter = express.Router();
 
 authRouter
-  .get("/check-token", isConnectedMiddleware.execute, authController.checkToken)
   .post("/register", authController.register)
   .post("/login", authController.login);
+  .get("/check-token", isConnectedMiddleware.execute, authController.checkToken)
+
 
 export default authRouter;

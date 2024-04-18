@@ -1,4 +1,4 @@
-import { createContext, useContext, useState , ReactNode, useEffect } from "react";
+import { createContext, useContext, useState , ReactNode } from "react";
 import { api } from "../config/api";
 import { toast } from "react-toastify";
 
@@ -12,14 +12,17 @@ export const UserContext=createContext({
     isAuthenticated: false,
     onLogin: async (values:ISignInFormValues)=>{},
     onRegister: async (values:ISignInFormValues)=>{},
-    onLogout: ()=>{},
+    onLogout: async ()=>{},
 })
 
 export const UserContextProvider = ({children} : {children: ReactNode} )=>{
     const [isAuthenticated , setIsAuthenticated] = useState(false)
-    const onLogout=()=>{
-        localStorage.removeItem("authtoken")
-        setIsAuthenticated(false)
+    const onLogout=async()=>{
+        try {
+            localStorage.removeItem("authtoken")
+        } catch (error) {
+            
+        }
     }
 
     const onLogin= async( values:ISignInFormValues)=>{
@@ -32,7 +35,7 @@ export const UserContextProvider = ({children} : {children: ReactNode} )=>{
             toast.success("Your are Loggind in !")
         } catch (error:any) {
             toast.error(error?.response?.data?.error || "")
-             
+              console.log("non");
         }
     }
     const onRegister= async( values:ISignInFormValues)=>{
@@ -43,27 +46,11 @@ export const UserContextProvider = ({children} : {children: ReactNode} )=>{
             setIsAuthenticated(true)
             toast.success("Account created!")
         } catch (error:any) {
+            console.log("non");
             
             toast.error(error?.response?.data?.error || "")
         }
     }
-
-     const checkToken = async () => {
-    try {
-       await api.get("/auth/check-token");
-    } catch (error: any) {
-      toast.error(error?.response?.data?.error || "");
-    }
-  };
-
-  useEffect(() => {
-  const authToken = localStorage.getItem("authtoken");
-  checkToken()
-  if (authToken) {
-    setIsAuthenticated(true);
-  }
-}, []);
-
 
     return <UserContext.Provider value={{ isAuthenticated , onLogin , onRegister , onLogout}}>
         {children}
