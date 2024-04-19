@@ -22,7 +22,7 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
 
     const deleteRecipe=async(recipe:any)=>{
         try {
-            await api.delete(`/recipes/${recipe._id}`)
+            console.log(recipe);
             fetchRecipes()
         } catch (error) {
             console.log(error);

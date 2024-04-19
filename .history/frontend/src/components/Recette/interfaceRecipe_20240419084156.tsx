@@ -8,25 +8,21 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
 
     const [allRecipes, setAllRecipes] = useState([]);
 
-    const fetchRecipes = async () => {
-        try {
-            const response = await api.get("/recipes");
-            setAllRecipes(response.data); 
-        } catch (error) {
-            console.error("Error fetching recipes:", error);
-        }
-    };
     useEffect(() => {
+        const fetchRecipes = async () => {
+            try {
+                const response = await api.get("/recipes");
+                setAllRecipes(response.data); 
+            } catch (error) {
+                console.error("Error fetching recipes:", error);
+            }
+        };
+
         fetchRecipes();
     }, []);
 
-    const deleteRecipe=async(recipe:any)=>{
-        try {
-            await api.delete(`/recipes/${recipe._id}`)
-            fetchRecipes()
-        } catch (error) {
-            console.log(error);
-        }
+    const deleteRecipe=async()=>{
+        
     }
 
     return (
@@ -37,17 +33,12 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
             </div>
             <div className="grid grid-cols-3 gap-6 mt-8 pl-10 pr-10">
                 {allRecipes.map((recipe: any) => (
-                    <div key={`recipe : ${recipe._id}`} className="rounded-3xl bg-gray-300 gap-5 flex flex-col pb-5 pt-5 pr-10 pl-10 text-center"> 
+                    <div key={`recipe : ${recipe.id}`} className="rounded-3xl bg-gray-300 gap-5 flex flex-col pb-5 pt-5 pr-10 pl-10 text-center"> 
                         <h4 className="text-2xl">{recipe.title}</h4>
                         <p>{recipe.description}</p>
                         <div className="flex items-center justify-end gap-5">
-                            <div onClick={()=>deleteRecipe(recipe)}>
-                                <DeleteIcon/>
-                            </div>
-                            <div>
-                                <SettingsIcon/>
-                            </div>
-                            
+                            <DeleteIcon onClick={deleteRecipe(recipe.id)}/>
+                            <SettingsIcon/>
                         </div>
                     </div>
                 ))}
