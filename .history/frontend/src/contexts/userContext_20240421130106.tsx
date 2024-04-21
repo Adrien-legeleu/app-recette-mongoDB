@@ -15,7 +15,6 @@ export interface ISignInFormValues {
 }
 
 export const UserContext = createContext({
-    user:null,
   isAuthenticated: false,
   onLogin: async (values: ISignInFormValues) => {},
   onRegister: async (values: ISignInFormValues) => {},
@@ -89,7 +88,7 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <UserContext.Provider
-      value={{ isAuthenticated, onLogin, onRegister, onLogout , user }}
+      value={{ isAuthenticated, onLogin, onRegister, onLogout }}
     >
       {children}
     </UserContext.Provider>

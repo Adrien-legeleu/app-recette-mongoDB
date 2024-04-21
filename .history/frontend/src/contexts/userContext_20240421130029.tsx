@@ -15,7 +15,6 @@ export interface ISignInFormValues {
 }
 
 export const UserContext = createContext({
-    user:null,
   isAuthenticated: false,
   onLogin: async (values: ISignInFormValues) => {},
   onRegister: async (values: ISignInFormValues) => {},
@@ -79,17 +78,15 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const authToken = localStorage.getItem("authtoken");
-    if (!authToken) {
+    checkToken();
+    if (authToken) {
       setIsAuthenticated(true);
-    }else{
-        checkToken();
-        setIsAuthenticated(true)
     }
   }, []);
 
   return (
     <UserContext.Provider
-      value={{ isAuthenticated, onLogin, onRegister, onLogout , user }}
+      value={{ isAuthenticated, onLogin, onRegister, onLogout }}
     >
       {children}
     </UserContext.Provider>

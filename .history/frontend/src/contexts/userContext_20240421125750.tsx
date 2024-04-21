@@ -4,7 +4,6 @@ import {
   useState,
   ReactNode,
   useEffect,
-  useCallback,
 } from "react";
 import { api } from "../config/api";
 import { toast } from "react-toastify";
@@ -15,7 +14,6 @@ export interface ISignInFormValues {
 }
 
 export const UserContext = createContext({
-    user:null,
   isAuthenticated: false,
   onLogin: async (values: ISignInFormValues) => {},
   onRegister: async (values: ISignInFormValues) => {},
@@ -23,15 +21,12 @@ export const UserContext = createContext({
 });
 
 export const UserContextProvider = ({ children }: { children: ReactNode }) => {
-    const [user , setUser ] = useState(null)
+    const [user , setUser ] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const onLogout = useCallback(()=>{
+  const onLogout = () => {
     localStorage.removeItem("authtoken");
-    setUser(null)
     setIsAuthenticated(false);
-    toast.success("You are now logged out !")
-  },[])
+  };
 
   const onLogin = async (values: ISignInFormValues) => {
     try {
@@ -70,26 +65,22 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await api.get("/auth/check-token");
       const user = response?.data;
-      onUpdateUser(user)
     } catch (error: any) {
-        onLogout()
       toast.error(error?.response?.data?.error || "");
     }
   };
 
   useEffect(() => {
     const authToken = localStorage.getItem("authtoken");
-    if (!authToken) {
+    checkToken();
+    if (authToken) {
       setIsAuthenticated(true);
-    }else{
-        checkToken();
-        setIsAuthenticated(true)
     }
   }, []);
 
   return (
     <UserContext.Provider
-      value={{ isAuthenticated, onLogin, onRegister, onLogout , user }}
+      value={{ isAuthenticated, onLogin, onRegister, onLogout }}
     >
       {children}
     </UserContext.Provider>
