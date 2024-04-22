@@ -10,7 +10,7 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
     const openModal = () => setIsOpenModal(true);
 
     const [allRecipes, setAllRecipes] = useState<IRecipe[]>([]);
-    const [isEditModalOpen , setIsEditOpenModal] = useState(false)
+        const [isEditModalOpen , setIsEditOpenModal] = useState(false)
     const [isCreateModalOpen , setCreateIsOpenModal] = useState(false)
 
     const fetchRecipes = async () => {
@@ -70,8 +70,8 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
                     </div>
                 ))}
             </div>
-            {isEditModalOpen && <EditRecipeModal />}
-            {isEditModalOpen && <CreateRecipeModal onAddRecipe={onAddRecipe} open={isCreateModalOpen} onClose= { ()=> setCreateIsOpenModal(false) } />}
+            {isEditModalOpen && <EditRecipeModal onAddrecipe={onAddRecipe}/>}
+            {isEditModalOpen && <CreateRecipeModal onAddrecipe={onAddRecipe}/>}
         </div>
     );
 };

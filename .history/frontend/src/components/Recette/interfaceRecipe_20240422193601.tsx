@@ -71,7 +71,7 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
                 ))}
             </div>
             {isEditModalOpen && <EditRecipeModal />}
-            {isEditModalOpen && <CreateRecipeModal onAddRecipe={onAddRecipe} open={isCreateModalOpen} onClose= { ()=> setCreateIsOpenModal(false) } />}
+            {isEditModalOpen && <CreateRecipeModal onAddRecipe={onAddRecipe} isCreateModalOpen={isCreateModalOpen} onClose= { ()=> setCreateIsOpenModal(false) } />}
         </div>
     );
 };

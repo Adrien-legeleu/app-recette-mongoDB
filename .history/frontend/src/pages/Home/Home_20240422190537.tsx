@@ -5,7 +5,7 @@ import { IRecipe } from "../../Types/recipes.type"
 
 export const Home=()=>{
     const [isModalOpen , setIsOpenModal] = useState(false)
-    const [RecipeToEdit , setRecipeToEdit] = useState<IRecipe | null>(null)
+    const [RecipeToEdit , setRecipeToEdit] = useState<IRecipe | null>(false)
 
     
     

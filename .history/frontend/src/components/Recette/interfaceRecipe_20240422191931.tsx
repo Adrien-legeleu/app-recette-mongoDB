@@ -3,15 +3,11 @@ import { api } from "../../config/api";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { IRecipe } from "../../Types/recipes.type";
-import { EditRecipeModal } from "../EditRecipeModal";
-import { CreateRecipeModal } from "../CreateRecipeModal";
 
 export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
     const openModal = () => setIsOpenModal(true);
 
     const [allRecipes, setAllRecipes] = useState<IRecipe[]>([]);
-    const [isEditModalOpen , setIsEditOpenModal] = useState(false)
-    const [isCreateModalOpen , setCreateIsOpenModal] = useState(false)
 
     const fetchRecipes = async () => {
         try {
@@ -70,8 +66,6 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
                     </div>
                 ))}
             </div>
-            {isEditModalOpen && <EditRecipeModal />}
-            {isEditModalOpen && <CreateRecipeModal onAddRecipe={onAddRecipe} open={isCreateModalOpen} onClose= { ()=> setCreateIsOpenModal(false) } />}
         </div>
     );
 };
