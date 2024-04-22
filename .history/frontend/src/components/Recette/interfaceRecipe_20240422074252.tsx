@@ -23,9 +23,7 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
 
     const deleteRecipe=async(recipeId:string)=>{
         try {
-            await api.delete(
-                `/tasks/${recipeId}`,
-            );
+            await api.delete(`/recipes/${recipeId}`)
             setAllRecipes((prev)=> {
                 return prev.filter((allRecipes:IRecipe)=> recipeId !== allRecipes._id)
             } )
@@ -49,7 +47,7 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
                             <div onClick={()=>deleteRecipe(recipe._id)}>
                                 <DeleteIcon/>
                             </div>
-                            <div onClick={openModal}>
+                            <div>
                                 <SettingsIcon/>
                             </div>
                             

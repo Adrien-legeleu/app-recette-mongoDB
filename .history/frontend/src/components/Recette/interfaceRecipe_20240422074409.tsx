@@ -49,7 +49,7 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
                             <div onClick={()=>deleteRecipe(recipe._id)}>
                                 <DeleteIcon/>
                             </div>
-                            <div onClick={openModal}>
+                            <div>
                                 <SettingsIcon/>
                             </div>
                             

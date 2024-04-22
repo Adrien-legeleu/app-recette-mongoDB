@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { api } from "../../config/api";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { IRecipe } from "../../Types/recipes.type";
+import { ITask } from "../../Types/recipes.type";
 
 export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
     const openModal = () => setIsOpenModal(true);
 
-    const [allRecipes, setAllRecipes] = useState<IRecipe[]>([]);
+    const [allRecipes, setAllRecipes] = useState<ITask[]>([]);
 
     const fetchRecipes = async () => {
         try {
@@ -23,12 +23,8 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
 
     const deleteRecipe=async(recipeId:string)=>{
         try {
-            await api.delete(
-                `/tasks/${recipeId}`,
-            );
-            setAllRecipes((prev)=> {
-                return prev.filter((allRecipes:IRecipe)=> recipeId !== allRecipes._id)
-            } )
+            await api.delete(`/recipes/${recipeId}`)
+            fetchRecipes()
         } catch (error) {
             console.log(error);
         }
@@ -49,7 +45,7 @@ export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
                             <div onClick={()=>deleteRecipe(recipe._id)}>
                                 <DeleteIcon/>
                             </div>
-                            <div onClick={openModal}>
+                            <div>
                                 <SettingsIcon/>
                             </div>
                             
