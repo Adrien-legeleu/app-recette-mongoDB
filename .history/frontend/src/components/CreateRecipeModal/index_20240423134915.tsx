@@ -9,7 +9,7 @@ interface IAddRecipesModalProps {
 }
 
 export const CreateRecipeModal=({onAddRecipe  , onClose}: IAddRecipesModalProps)=>{
-    const onSaveRecipe=async(recipeData : Partial<IRecipe>)=>{
+    const onCreateRecipe=async(recipeData : Partial<IRecipe>)=>{
         try {
             const {description } = recipeData
             const {title } = recipeData
@@ -19,14 +19,11 @@ export const CreateRecipeModal=({onAddRecipe  , onClose}: IAddRecipesModalProps)
             }
             const newRecipe ={description , title}
             const response = await api.post("/recipes", newRecipe)
-            if (!!onAddRecipe) {
-                onAddRecipe(response?.data);
-            }
-            onClose()
+            onAddRecipe(response?.data)
         } catch (error) {
             console.log(error);
             
         }
     }
-    return <ModalRecipe onSaveRecipe={onSaveRecipe} onClose={onClose} title="Your new Recipe" params={{ description:true , title:true}} />
+    return <ModalRecipe onCreateRecipe={onCreateRecipe} onClose={onClose} title="Create Recipe" params={{ description:true , title:true}} />
 }

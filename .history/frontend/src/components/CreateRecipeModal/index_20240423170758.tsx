@@ -28,5 +28,5 @@ export const CreateRecipeModal=({onAddRecipe  , onClose}: IAddRecipesModalProps)
             
         }
     }
-    return <ModalRecipe onSaveRecipe={onSaveRecipe} onClose={onClose} title="Your new Recipe" params={{ description:true , title:true}} />
+    return <div>erer</div>
 }

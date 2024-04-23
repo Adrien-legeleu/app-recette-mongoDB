@@ -29,7 +29,7 @@ export const InterfaceRecipe = () => {
             console.log(recipeId);
             
             await api.delete(
-                `/recipes/${recipeId}`,
+                `/tasks/${recipeId}`,
             );
             setAllRecipes((prev)=> {
                 return prev.filter((allRecipes:IRecipe)=> recipeId !== allRecipes._id)

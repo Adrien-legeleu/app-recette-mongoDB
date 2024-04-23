@@ -19,10 +19,9 @@ export const CreateRecipeModal=({onAddRecipe  , onClose}: IAddRecipesModalProps)
             }
             const newRecipe ={description , title}
             const response = await api.post("/recipes", newRecipe)
-            if (!!onAddRecipe) {
-                onAddRecipe(response?.data);
+            if (!!onAddTask) {
+                onAddTask(response?.data);
             }
-            onClose()
         } catch (error) {
             console.log(error);
             

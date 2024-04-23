@@ -26,10 +26,8 @@ export const InterfaceRecipe = () => {
 
     const deleteRecipe=async(recipeId:string)=>{
         try {
-            console.log(recipeId);
-            
             await api.delete(
-                `/recipes/${recipeId}`,
+                `/tasks/${recipeId}`,
             );
             setAllRecipes((prev)=> {
                 return prev.filter((allRecipes:IRecipe)=> recipeId !== allRecipes._id)

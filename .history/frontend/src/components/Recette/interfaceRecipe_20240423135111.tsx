@@ -5,8 +5,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { IRecipe } from "../../Types/recipes.type";
 import { CreateRecipeModal } from "../CreateRecipeModal";
 
-export const InterfaceRecipe = () => {
-    const openModal = () => setCreateIsOpenModal(true);
+export const InterfaceRecipe = ({ setIsOpenModal }: any) => {
+    const openModal = () => setIsOpenModal(true);
 
     const [allRecipes, setAllRecipes] = useState<IRecipe[]>([]);
     const [isEditModalOpen , setIsEditOpenModal] = useState(false)
@@ -26,10 +26,8 @@ export const InterfaceRecipe = () => {
 
     const deleteRecipe=async(recipeId:string)=>{
         try {
-            console.log(recipeId);
-            
             await api.delete(
-                `/recipes/${recipeId}`,
+                `/tasks/${recipeId}`,
             );
             setAllRecipes((prev)=> {
                 return prev.filter((allRecipes:IRecipe)=> recipeId !== allRecipes._id)
