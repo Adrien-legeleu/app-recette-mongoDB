@@ -17,11 +17,7 @@ export const EditRecipeModal=({onClose , recipes , onEditRecipe , recipeToEdit} 
                     throw new Error("Data for your recipe is required");
                     
                 }
-                api.patch(`/recipes/${recipeToEdit._id}` , recipeData)    
-                if (onEditRecipe) {
-                    onEditRecipe(recipeData , recipeToEdit._id)
-                }    
-                onClose()       
+                api.patch(`/recipes/${recipeToEdit._id}`)                
             } catch (error) {
                 console.log(error);
                 
@@ -29,6 +25,6 @@ export const EditRecipeModal=({onClose , recipes , onEditRecipe , recipeToEdit} 
         }
             
     return(
-        <ModalRecipe onClose={onClose title='Edit your Recipe'}  />
+        <ModalRecipe onClose={onClose}  />
     )
 }

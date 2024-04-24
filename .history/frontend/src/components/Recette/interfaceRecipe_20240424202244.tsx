@@ -52,18 +52,20 @@ export const InterfaceRecipe = () => {
             ]
         })
     }
-    const onEditRecipe=(recipeProperties : Partial<IRecipe>, recipeId: string)=>{
-        setAllRecipes((prev:any)=>{
-            return prev.map((recipe: IRecipe)=>{
-                if (recipe._id === recipeId) {
-                    return {
-                        ...recipe,
-                        recipeProperties
-                    }
-                }
-            })
-        })
-    }
+    const onEditRecipe = (recipeProperties: Partial<IRecipe>, recipeId: string) => {
+    setAllRecipes((prev: any) => {
+        return prev.map((recipe: IRecipe) => {
+            if (recipe._id === recipeId) {
+                return {
+                    ...recipe,
+                    recipeProperties,
+                };
+            }
+            return recipe; // Ajoutez cette ligne pour gérer le cas où recipe._id ne correspond pas à recipeId
+        });
+    });
+};
+
 
     return (
         <div className="h-full w-full mt-12">

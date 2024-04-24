@@ -20,8 +20,7 @@ export const EditRecipeModal=({onClose , recipes , onEditRecipe , recipeToEdit} 
                 api.patch(`/recipes/${recipeToEdit._id}` , recipeData)    
                 if (onEditRecipe) {
                     onEditRecipe(recipeData , recipeToEdit._id)
-                }    
-                onClose()       
+                }            
             } catch (error) {
                 console.log(error);
                 
@@ -29,6 +28,6 @@ export const EditRecipeModal=({onClose , recipes , onEditRecipe , recipeToEdit} 
         }
             
     return(
-        <ModalRecipe onClose={onClose title='Edit your Recipe'}  />
+        <ModalRecipe onClose={onClose}  />
     )
 }

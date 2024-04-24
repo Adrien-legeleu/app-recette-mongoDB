@@ -1,15 +1,14 @@
 import { api } from "../../config/api";
 import { IRecipe } from "../../Types/recipes.type"
-import { ModalRecipe } from "../Recette";
 
 interface IRecipeEditProps{
     onClose:()=>void;
     recipes: any;
     onEditRecipe:(recipeProperties : IRecipe , recipeId: string)=>void
-    recipeToEdit:any
+    openRecipeToEdit:any
 }
 
-export const EditRecipeModal=({onClose , recipes , onEditRecipe , recipeToEdit} : IRecipeEditProps)=>{
+export const EditRecipeModal=({onClose , recipes , onEditRecipe , openRecipeToEdit} : IRecipeEditProps)=>{
         const onSaveRecipe=async(recipeData: Partial<IRecipe>)=>{
             try {
                 const {description , title , status} = recipeData
@@ -17,11 +16,7 @@ export const EditRecipeModal=({onClose , recipes , onEditRecipe , recipeToEdit} 
                     throw new Error("Data for your recipe is required");
                     
                 }
-                api.patch(`/recipes/${recipeToEdit._id}` , recipeData)    
-                if (onEditRecipe) {
-                    onEditRecipe(recipeData , recipeToEdit._id)
-                }    
-                onClose()       
+                api.patch(`/recipes/${}`)                
             } catch (error) {
                 console.log(error);
                 
@@ -29,6 +24,6 @@ export const EditRecipeModal=({onClose , recipes , onEditRecipe , recipeToEdit} 
         }
             
     return(
-        <ModalRecipe onClose={onClose title='Edit your Recipe'}  />
+        <div>sss</div>
     )
 }
