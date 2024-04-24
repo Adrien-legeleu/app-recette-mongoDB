@@ -39,11 +39,9 @@ export const InterfaceRecipe = () => {
             console.log(error);
         }
     }
-    const openRecipeToEdit=(recipe:IRecipe)=>{
-        setIsEditOpenModal(recipe)
-        console.log(recipe);
-        
-        openModal()
+    const openRecipeToEdit=()=>{
+        setIsEditOpenModal()
+        openModal
     }
 
     const onAddRecipe=(taskProperties : IRecipe)=>{
@@ -55,7 +53,7 @@ export const InterfaceRecipe = () => {
         })
     }
     const onEditRecipe=(recipeProperties : IRecipe , recipeId: string)=>{
-        setAllRecipes((prev:any)=>{
+        setAllRecipes((prev)=>{
             return prev.map((recipe: IRecipe)=>{
                 if (recipe._id === recipeId) {
                     return {
@@ -82,7 +80,7 @@ export const InterfaceRecipe = () => {
                             <div onClick={()=>deleteRecipe(recipe._id)}>
                                 <DeleteIcon/>
                             </div>
-                            <div onClick={()=>openRecipeToEdit(recipe)}>
+                            <div onClick={openRecipeToEdit}>
                                 <SettingsIcon/>
                             </div>
                             

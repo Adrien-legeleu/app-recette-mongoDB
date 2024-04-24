@@ -6,7 +6,7 @@ interface IRecipeEditProps{
     onEditRecipe:(recipeProperties : IRecipe , recipeId: string)=>void
 }
 
-export const EditRecipeModal=({onClose , recipes , onEditRecipe} : IRecipeEditProps)=>{
+export const EditRecipeModal=({onClose , recipes} : IRecipeEditProps)=>{
         const onSaveRecipe=async(recipeData: Partial<IRecipe>)=>{
             try {
                 const {description , title , status} = recipeData

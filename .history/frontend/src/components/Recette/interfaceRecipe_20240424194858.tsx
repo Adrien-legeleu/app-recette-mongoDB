@@ -8,7 +8,7 @@ import { EditRecipeModal } from "../EditRecipeModal";
 
 export const InterfaceRecipe = () => {
     const openModal = () => setIsEditOpenModal(true);
-     const [RecipeToEdit , setRecipeToEdit] = useState<IRecipe | null>(null) 
+
     const [allRecipes, setAllRecipes] = useState<IRecipe[]>([]);
     const [isEditModalOpen , setIsEditOpenModal] = useState(false)
     const [isCreateModalOpen , setCreateIsOpenModal] = useState(false)
@@ -39,12 +39,6 @@ export const InterfaceRecipe = () => {
             console.log(error);
         }
     }
-    const openRecipeToEdit=(recipe:IRecipe)=>{
-        setIsEditOpenModal(recipe)
-        console.log(recipe);
-        
-        openModal()
-    }
 
     const onAddRecipe=(taskProperties : IRecipe)=>{
         setAllRecipes((prev)=>{
@@ -55,7 +49,7 @@ export const InterfaceRecipe = () => {
         })
     }
     const onEditRecipe=(recipeProperties : IRecipe , recipeId: string)=>{
-        setAllRecipes((prev:any)=>{
+        setAllRecipes((prev)=>{
             return prev.map((recipe: IRecipe)=>{
                 if (recipe._id === recipeId) {
                     return {
@@ -82,7 +76,7 @@ export const InterfaceRecipe = () => {
                             <div onClick={()=>deleteRecipe(recipe._id)}>
                                 <DeleteIcon/>
                             </div>
-                            <div onClick={()=>openRecipeToEdit(recipe)}>
+                            <div onClick={openModal}>
                                 <SettingsIcon/>
                             </div>
                             

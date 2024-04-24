@@ -1,12 +1,6 @@
 import { IRecipe } from "../../Types/recipes.type"
 
-interface IRecipeEditProps{
-    onClose:()=>void;
-    recipes: any;
-    onEditRecipe:(recipeProperties : IRecipe , recipeId: string)=>void
-}
-
-export const EditRecipeModal=({onClose , recipes , onEditRecipe} : IRecipeEditProps)=>{
+export const EditRecipeModal=()=>{
         const onSaveRecipe=async(recipeData: Partial<IRecipe>)=>{
             try {
                 const {description , title , status} = recipeData
