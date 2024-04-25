@@ -66,9 +66,9 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     </FormControl>
                                 )
                             }
-                            if (key==="description") {
-                                return(
-                                       <TextField
+                            return (
+                                <div>
+                                    <TextField
                                     key={key}
                                     margin="none"
                                     required
@@ -81,11 +81,6 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
                                     label={fieldTitle}
                                 />
-                                )
-                            }
-                            return (
-                                
-                                 
                                 <TextField
                                     key={key}
                                     margin="none"
@@ -99,7 +94,7 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
                                     label={fieldTitle}
                                 />
-                                
+                                </div>
                             )
 
                         })

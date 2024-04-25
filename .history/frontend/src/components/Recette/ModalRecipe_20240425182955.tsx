@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IRecipe } from "../../Types/recipes.type";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 interface IRecipeProps {
     title:string;
@@ -48,17 +48,14 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                         Object.entries(params).map(([key, value]) => {
                             if (key === '_id' || !value || !(key in recipeData)) return null;
                             const fieldTitle = key[0].toUpperCase() + key.slice(1);
-                            const valueData = recipeData[key as keyof typeof recipeData];
-                            console.log(valueData);
-                            
                             if (key==="status") {
                                 return(
                                     <FormControl>
-                                        <InputLabel id="status-task-label">{fieldTitle}</InputLabel>
+                                        <InputLabel id="status-task-label">{fieldTitle}></InputLabel>
                                         <Select labelId="status-task-label"
                                             id="status-task-select"
                                             value={valueData}
-                                            onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
+                                            onChange={(e) => onChangeTaskDataValue(key, e.target.value)}
                                             label={fieldTitle}>
                                             <MenuItem value={"in progress"} >In Progress</MenuItem>
                                             <MenuItem value={"done"}>Done</MenuItem>
@@ -66,41 +63,6 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     </FormControl>
                                 )
                             }
-                            if (key==="description") {
-                                return(
-                                       <TextField
-                                    key={key}
-                                    margin="none"
-                                    required
-                                    fullWidth
-                                    variant='standard'
-                                    name={'paramDesc'}
-                                    autoComplete={'paramDesc'}
-                                    autoFocus
-                                    value={valueData}
-                                    onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
-                                    label={fieldTitle}
-                                />
-                                )
-                            }
-                            return (
-                                
-                                 
-                                <TextField
-                                    key={key}
-                                    margin="none"
-                                    required
-                                    fullWidth
-                                    variant='standard'
-                                    name={'paramTitle'}
-                                    autoComplete={'paramTitle'}
-                                    autoFocus
-                                    value={valueData}
-                                    onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
-                                    label={fieldTitle}
-                                />
-                                
-                            )
 
                         })
                     }

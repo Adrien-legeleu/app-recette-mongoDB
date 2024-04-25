@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../config/api";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { IRecipe } from "../../Types/recipes.type";
 import { CreateRecipeModal } from "../CreateRecipeModal";
 import { EditRecipeModal } from "../EditRecipeModal";
-import { Recipe } from "./Recipe";
 
 export const InterfaceRecipe = () => {
     const openModal = () => setCreateIsOpenModal(true);
@@ -83,7 +82,14 @@ export const InterfaceRecipe = () => {
         }
     }
 
-     
+     const {isDone, newStatus} = useMemo<IRecipe>(() => {
+        const isDone = task.status === 'done';
+
+        return {
+            isDone,
+            newStatus: isDone ? 'in progress' : 'done',
+        };
+    }, [task.status]);
 
     return (
         <div className="h-full w-full mt-12">
@@ -93,7 +99,19 @@ export const InterfaceRecipe = () => {
             </div>
             <div className="grid grid-cols-3 gap-6 mt-8 pl-10 pr-10">
                 {allRecipes.map((recipe: any) => (
-                    <Recipe  recipe={recipe} onChangeRecipe={onChangeRecipe} openRecipeToEdit={openRecipeToEdit} deleteRecipe={deleteRecipe}/>
+                    <div key={`recipe : ${recipe._id}`} className="rounded-3xl bg-gray-100 gap-5 flex flex-col pb-5 pt-5 pr-10 pl-10 text-center" onClick={()=>onChangeRecipe(status:newStatus)}> 
+                        <h4 className="text-2xl capitalize">{recipe.title}</h4>
+                        <p>{recipe.description}</p>
+                        <div className="flex items-center justify-end gap-5">
+                            <div onClick={()=>deleteRecipe(recipe._id)}>
+                                <DeleteIcon/>
+                            </div>
+                            <div onClick={()=>openRecipeToEdit(recipe)}>
+                                <SettingsIcon/>
+                            </div>
+                            
+                        </div>
+                    </div>
                 ))}
             </div>
             {isEditModalOpen && <EditRecipeModal onClose={ ()=> setIsEditOpenModal(false)} onEditRecipe={onEditRecipe} recipeToEdit={recipeToEdit}/>}

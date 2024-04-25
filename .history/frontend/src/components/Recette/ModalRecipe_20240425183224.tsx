@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IRecipe } from "../../Types/recipes.type";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 interface IRecipeProps {
     title:string;
@@ -48,7 +48,7 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                         Object.entries(params).map(([key, value]) => {
                             if (key === '_id' || !value || !(key in recipeData)) return null;
                             const fieldTitle = key[0].toUpperCase() + key.slice(1);
-                            const valueData = recipeData[key as keyof typeof recipeData];
+                            const valueData = taskData[key as keyof typeof taskData];
                             console.log(valueData);
                             
                             if (key==="status") {
@@ -66,9 +66,9 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     </FormControl>
                                 )
                             }
-                            if (key==="description") {
-                                return(
-                                       <TextField
+                            return (
+                                <div>
+                                    <TextField
                                     key={key}
                                     margin="none"
                                     required
@@ -78,14 +78,9 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     autoComplete={'paramDesc'}
                                     autoFocus
                                     value={valueData}
-                                    onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
+                                    onChange={(e) => onChangeTaskDataValue(key, e.target.value)}
                                     label={fieldTitle}
                                 />
-                                )
-                            }
-                            return (
-                                
-                                 
                                 <TextField
                                     key={key}
                                     margin="none"
@@ -96,10 +91,10 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     autoComplete={'paramTitle'}
                                     autoFocus
                                     value={valueData}
-                                    onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
+                                    onChange={(e) => onChangeTaskDataValue(key, e.target.value)}
                                     label={fieldTitle}
                                 />
-                                
+                                </div>
                             )
 
                         })

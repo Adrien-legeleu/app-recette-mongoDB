@@ -48,7 +48,7 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                         Object.entries(params).map(([key, value]) => {
                             if (key === '_id' || !value || !(key in recipeData)) return null;
                             const fieldTitle = key[0].toUpperCase() + key.slice(1);
-                            const valueData = recipeData[key as keyof typeof recipeData];
+                            const valueData = taskData[key as keyof typeof taskData];
                             console.log(valueData);
                             
                             if (key==="status") {
@@ -66,9 +66,9 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     </FormControl>
                                 )
                             }
-                            if (key==="description") {
-                                return(
-                                       <TextField
+                            return (
+                                <div>
+                                    <TextField
                                     key={key}
                                     margin="none"
                                     required
@@ -81,11 +81,6 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
                                     label={fieldTitle}
                                 />
-                                )
-                            }
-                            return (
-                                
-                                 
                                 <TextField
                                     key={key}
                                     margin="none"
@@ -99,7 +94,7 @@ export const ModalRecipe=({title , initialRecipeData , onClose , onSaveRecipe , 
                                     onChange={(e) => onChangeRecipeDataValue(key, e.target.value)}
                                     label={fieldTitle}
                                 />
-                                
+                                </div>
                             )
 
                         })
