@@ -9,7 +9,7 @@ import { Recipe } from "./Recipe";
 
 export const InterfaceRecipe = () => {
     const openModal = () => setCreateIsOpenModal(true);
-    const [recipeToEdit , setRecipeToEdit] = useState<IRecipe | null>(null) 
+     const [recipeToEdit , setRecipeToEdit] = useState<IRecipe | null>(null) 
     const [allRecipes, setAllRecipes] = useState<IRecipe[]>([]);
     const [isEditModalOpen , setIsEditOpenModal] = useState(false)
     const [isCreateModalOpen , setCreateIsOpenModal] = useState(false)
@@ -27,7 +27,9 @@ export const InterfaceRecipe = () => {
     }, []);
 
     const deleteRecipe=async(recipeId:string)=>{
-        try {            
+        try {
+            console.log(recipeId);
+            
             await api.delete(
                 `/recipes/${recipeId}`,
             );
@@ -68,17 +70,8 @@ export const InterfaceRecipe = () => {
         try {
             const updateRecipe= await api.patch(`/recipes/${recipeId}` , recipeProperties)
             setAllRecipes((prev)=>{
-                return prev.map((recipe: IRecipe)=>{                    
-                    if (recipe._id === recipeId) {
-                        
-                        const aa={...recipe , recipeProperties}
-                        console.log(aa);
-                        console.log("zz");
-                        console.log(updateRecipe.data);
-                        
-                        
-                        
-                        
+                return prev.map((recipe: IRecipe)=>{
+                    if (recipe._id = recipeId) {
                         return updateRecipe.data
                     }
                     return recipe

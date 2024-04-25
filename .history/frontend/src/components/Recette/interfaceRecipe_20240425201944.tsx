@@ -73,10 +73,6 @@ export const InterfaceRecipe = () => {
                         
                         const aa={...recipe , recipeProperties}
                         console.log(aa);
-                        console.log("zz");
-                        console.log(updateRecipe.data);
-                        
-                        
                         
                         
                         return updateRecipe.data

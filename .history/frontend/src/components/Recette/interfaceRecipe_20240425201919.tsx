@@ -70,13 +70,9 @@ export const InterfaceRecipe = () => {
             setAllRecipes((prev)=>{
                 return prev.map((recipe: IRecipe)=>{                    
                     if (recipe._id === recipeId) {
-                        
+                        console.log(updateRecipe.data);
                         const aa={...recipe , recipeProperties}
                         console.log(aa);
-                        console.log("zz");
-                        console.log(updateRecipe.data);
-                        
-                        
                         
                         
                         return updateRecipe.data

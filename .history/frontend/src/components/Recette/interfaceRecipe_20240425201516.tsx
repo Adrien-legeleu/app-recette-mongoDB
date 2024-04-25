@@ -68,17 +68,8 @@ export const InterfaceRecipe = () => {
         try {
             const updateRecipe= await api.patch(`/recipes/${recipeId}` , recipeProperties)
             setAllRecipes((prev)=>{
-                return prev.map((recipe: IRecipe)=>{                    
+                return prev.map((recipe: IRecipe)=>{
                     if (recipe._id === recipeId) {
-                        
-                        const aa={...recipe , recipeProperties}
-                        console.log(aa);
-                        console.log("zz");
-                        console.log(updateRecipe.data);
-                        
-                        
-                        
-                        
                         return updateRecipe.data
                     }
                     return recipe
