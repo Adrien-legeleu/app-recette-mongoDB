@@ -41,7 +41,6 @@ export const InterfaceRecipe = () => {
     }
     const openRecipeToEdit=(recipe:IRecipe)=>{
         setRecipeToEdit(recipe)
-        setIsEditOpenModal(true)
         openModal()
     }
 

@@ -8,7 +8,7 @@ interface IRecipeEditProps{
     recipeToEdit:any
 }
 
-export const EditRecipeModal=({onClose  , onEditRecipe , recipeToEdit} : IRecipeEditProps)=>{
+export const EditRecipeModal=({onClose , recipes , onEditRecipe , recipeToEdit} : IRecipeEditProps)=>{
         const onSaveRecipe=async(recipeData: Partial<IRecipe>)=>{
             try {
                 const {description , title , status} = recipeData
@@ -28,6 +28,6 @@ export const EditRecipeModal=({onClose  , onEditRecipe , recipeToEdit} : IRecipe
         }
             
     return(
-        <ModalRecipe onClose={onClose}   title='Edit your Recipe' initialRecipeData={{description: recipeToEdit?.description , title: recipeToEdit?.title , status: recipeToEdit?.status }} onSaveRecipe={onSaveRecipe} params={{description:true , title:true , status:true}} />
+        <ModalRecipe onClose={onClose}   title='Edit your Recipe' initialRecipeData={{description: recipeToEdit?.description , title: recipeToEdit?.title , status: recipeToEdit?.status }}/>
     )
 }

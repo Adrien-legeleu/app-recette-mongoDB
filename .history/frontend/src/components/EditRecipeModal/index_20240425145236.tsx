@@ -28,6 +28,6 @@ export const EditRecipeModal=({onClose  , onEditRecipe , recipeToEdit} : IRecipe
         }
             
     return(
-        <ModalRecipe onClose={onClose}   title='Edit your Recipe' initialRecipeData={{description: recipeToEdit?.description , title: recipeToEdit?.title , status: recipeToEdit?.status }} onSaveRecipe={onSaveRecipe} params={{description:true , title:true , status:true}} />
+        <div>sds</div>
     )
 }

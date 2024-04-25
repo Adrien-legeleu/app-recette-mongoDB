@@ -7,7 +7,7 @@ import { CreateRecipeModal } from "../CreateRecipeModal";
 import { EditRecipeModal } from "../EditRecipeModal";
 
 export const InterfaceRecipe = () => {
-    const openModal = () => setCreateIsOpenModal(true);
+    const openModal = () => setIsEditOpenModal(true);
      const [recipeToEdit , setRecipeToEdit] = useState<IRecipe | null>(null) 
     const [allRecipes, setAllRecipes] = useState<IRecipe[]>([]);
     const [isEditModalOpen , setIsEditOpenModal] = useState(false)
@@ -41,7 +41,6 @@ export const InterfaceRecipe = () => {
     }
     const openRecipeToEdit=(recipe:IRecipe)=>{
         setRecipeToEdit(recipe)
-        setIsEditOpenModal(true)
         openModal()
     }
 
