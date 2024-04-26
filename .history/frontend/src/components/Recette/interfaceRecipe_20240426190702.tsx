@@ -63,7 +63,7 @@ export const InterfaceRecipe = () => {
         })
     }
     const onChangeRecipe=async(recipeProperties: Partial<IRecipe> , recipeId:string)=>{
-        try {
+       
             const updateRecipe= await api.patch(`/recipes/${recipeId}` , recipeProperties)
             setAllRecipes((prev)=>{
                 return prev.map((recipe: IRecipe)=>{                    
@@ -73,10 +73,7 @@ export const InterfaceRecipe = () => {
                     return recipe
                 })
             })
-        } catch (error) {
-            console.log(error);
-            
-        }
+      
     }
 
      

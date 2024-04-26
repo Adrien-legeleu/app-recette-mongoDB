@@ -9,7 +9,7 @@ interface IRecipeEditProps{
 }
 
 export const EditRecipeModal=({onClose  , onEditRecipe , recipeToEdit} : IRecipeEditProps)=>{
-        const onSaveRecipe=async(recipeData:any)=>{
+        const onSaveRecipe=async(recipeData: Partial<IRecipe>)=>{
             try {
                 const {description , title , status} = recipeData
                 if (!recipeToEdit) throw new Error('recipe is required');
