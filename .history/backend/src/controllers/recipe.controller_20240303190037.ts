@@ -70,12 +70,6 @@ export class RecipeController {
         },
         { new: true }
       );
-      if (!recipeUpdate) {
-        res.status(404).send({
-          error: `Task ${recipeId} not found`,
-        });
-        return;
-      }
       res.status(201).send(recipeUpdate);
     } catch (error: any) {
       console.log(error);
@@ -85,26 +79,23 @@ export class RecipeController {
     }
   }
   async delete(req: any, res: Response): Promise<void> {
-    try {
-      const { recipeId } = req.params;
-      const { userId } = req.user;
-      const deleteRecipe = await RecipeModel.findOneAndDelete({
-        _id: recipeId,
-        userId,
+    const { recipeId } = req.params;
+    const { userId } = req.body;
+
+    const recipeDelete = await RecipeModel.findOneAndDelete({
+      _id: recipeId,
+      userId,
+    });
+
+    if (recipeDelete) {
+      res.status(404).send({
+        error: `Recipe "${recipeId}" not found`,
       });
-      if (!deleteRecipe) {
-        res.status(404).send({
-          error: `Recipe ${recipeId} not found`,
-        });
-      }
-      res.status(200).send({
-        message: `Recipe ${recipeId} deleted`,
-      });
-    } catch (error: any) {
-      console.log(error);
-      res.status(500).send({
-        error: error?.message,
-      });
+      return;
     }
+
+    res.status(200).send({
+      message: `recipe "${recipeId}" delete`,
+    });
   }
 }

@@ -85,26 +85,23 @@ export class RecipeController {
     }
   }
   async delete(req: any, res: Response): Promise<void> {
-    try {
-      const { recipeId } = req.params;
-      const { userId } = req.user;
-      const deleteRecipe = await RecipeModel.findOneAndDelete({
-        _id: recipeId,
-        userId,
-      });
-      if (!deleteRecipe) {
-        res.status(404).send({
-          error: `Recipe ${recipeId} not found`,
-        });
-      }
-      res.status(200).send({
-        message: `Recipe ${recipeId} deleted`,
-      });
-    } catch (error: any) {
+   try {
+    const {recipeId} = req.params
+    const {userId}=req.user
+    const deleteRecipe = await RecipeModel.findOneAndDelete({_id:recipeId, userId})
+    if (!deleteRecipe) {
+      res.status(404).send({
+        error: `Recipe ${recipeId} not found`
+      })
+    }
+    res.status(200).send({
+      message:`Recipe ${recipeId} delted`
+    })
+    
+   } catch (error:any) {
       console.log(error);
       res.status(500).send({
         error: error?.message,
       });
-    }
-  }
+   }
 }
